@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block title %}SentimentStock 결과{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <h1>{{ stock_name }} 분석 결과</h1>
+
+    <h5 class="mt-4">📰 뉴스 감성 분석</h5>
+    <ul class="list-group mb-4">
+      {% for news in news_list %}
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        {{ news.title }}
+        <span class="badge bg-{{ 'success' if news.sentiment == 'positive' else 'danger' }}">{{ news.sentiment }}</span>
+      </li>
+      {% endfor %}
+    </ul>
+
+    <h5>📈 기술적 분석 요약</h5>
+    <ul class="list-group mb-4">
+      <li class="list-group-item">RSI: {{ rsi }} ({{ rsi_level }})</li>
+      <li class="list-group-item">MACD: {{ macd }}, Signal: {{ macd_signal }}</li>
+    </ul>
+
+    <h5>📊 종합 투자 점수</h5>
+    <div class="text-center">
+      <img src="{{ url_for('static', filename=score_chart) }}" class="img-fluid" alt="투자 점수 차트">
+      <p class="mt-2">총점: <strong>{{ total_score }}</strong>점 / 100</p>
+    </div>
+
+    <div class="mt-5 text-center">
+      <a href="/" class="btn btn-outline-primary">🔙 다시 검색</a>
+    </div>
+  </div>
+{% endblock %}

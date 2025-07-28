@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}SentimentStock 검색{% endblock %}
+{% block content %}
+  <div class="container">
+    <h1>📈 SentimentStock</h1>
+    <form action="{{ url_for('search') }}" method="get">
+      <input type="text" name="stock" placeholder="종목명을 입력하세요" class="form-control mb-3" required>
+      <button type="submit" class="btn btn-primary w-100">분석하기</button>
+    </form>
+    <footer>© 2025 SentimentStock</footer>
+  </div>
+{% endblock %}
