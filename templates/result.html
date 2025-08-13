@@ -1,34 +1,41 @@
 {% extends "base.html" %}
-{% block title %}SentimentStock 결과{% endblock %}
+
+{% block title %}포트폴리오 관리 - AI 주식 투자 분석기{% endblock %}
 
 {% block content %}
-  <div class="container">
-    <h1>{{ stock_name }} 분석 결과</h1>
-
-    <h5 class="mt-4">📰 뉴스 감성 분석</h5>
-    <ul class="list-group mb-4">
-      {% for news in news_list %}
-      <li class="list-group-item d-flex justify-content-between align-items-center">
-        {{ news.title }}
-        <span class="badge bg-{{ 'success' if news.sentiment == 'positive' else 'danger' }}">{{ news.sentiment }}</span>
-      </li>
-      {% endfor %}
-    </ul>
-
-    <h5>📈 기술적 분석 요약</h5>
-    <ul class="list-group mb-4">
-      <li class="list-group-item">RSI: {{ rsi }} ({{ rsi_level }})</li>
-      <li class="list-group-item">MACD: {{ macd }}, Signal: {{ macd_signal }}</li>
-    </ul>
-
-    <h5>📊 종합 투자 점수</h5>
-    <div class="text-center">
-      <img src="{{ url_for('static', filename=score_chart) }}" class="img-fluid" alt="투자 점수 차트">
-      <p class="mt-2">총점: <strong>{{ total_score }}</strong>점 / 100</p>
+<div class="app-container">
+    <div class="header-section fade-in">
+        <div class="header-content">
+            <div class="header-icon">
+                <i class="fas fa-briefcase"></i>
+            </div>
+            <h1 class="header-title">포트폴리오 관리</h1>
+            <p class="header-subtitle">
+                내 투자 포트폴리오를 관리하고 성과를 분석하세요
+            </p>
+        </div>
     </div>
 
-    <div class="mt-5 text-center">
-      <a href="/" class="btn btn-outline-primary">🔙 다시 검색</a>
+    <div class="fade-in-up">
+        <div class="result-card">
+            <div class="card-header gradient-header">
+                <!-- 그래프 넣기 -->
+                <h3 class="card-title">
+                    <i class="fas fa-chart-pie"></i> 
+                </h3>
+                <!---->
+            </div>
+            <div class="card-content">
+                <div class="text-center">
+                    <p class="text-gray-600">{{ query }}</p>
+                    <p class="text-gray-500 mt-2">곧 출시될 예정이니 조금만 기다려 주세요!</p>
+                    <a href="{{ url_for('index') }}" class="search-btn inline-flex mt-6">
+                        <i class="fas fa-arrow-left mr-2"></i>
+                        분석기로 돌아가기
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
+</div>
 {% endblock %}

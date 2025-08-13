@@ -1,12 +1,50 @@
 {% extends "base.html" %}
-{% block title %}SentimentStock 검색{% endblock %}
+
+{% block title %}AI 주식 투자 분석기 - 스마트한 투자 결정{% endblock %}
+
+{% block head %}
+<meta name="description" content="AI 기술을 활용한 주식 투자 분석 서비스. 재무 건전성, 성장성, 시장 전망을 종합적으로 분석하여 투자 점수를 제공합니다.">
+<meta name="keywords" content="주식분석, AI투자, 주식투자, 투자분석, 재무분석">
+{% endblock %}
+
 {% block content %}
-  <div class="container">
-    <h1>📈 SentimentStock</h1>
-    <form action="{{ url_for('search') }}" method="get">
-      <input type="text" name="stock" placeholder="종목명을 입력하세요" class="form-control mb-3" required>
-      <button type="submit" class="btn btn-primary w-100">분석하기</button>
-    </form>
-    <footer>© 2025 SentimentStock</footer>
-  </div>
+<div class="app-container">
+
+    <!-- Header Section -->
+    <div class="header-section fade-in">
+        <div class="header-content">
+            <div class="header-icon">
+                <i class="fas fa-sparkles"></i>
+            </div>
+            <h1 class="header-title">AI 주식 투자 분석기</h1>
+            <p class="header-subtitle">
+                첨단 AI 기술을 활용하여 주식의 투자 적합성을 종합적으로 분석하고<br>
+                데이터 기반의 투자 인사이트를 제공합니다
+            </p>
+        </div>
+    </div>
+
+    <!-- Search Section (form 기반) -->
+    <div class="search-section fade-in-up">
+        <div class="search-card">
+            <form action="{{ url_for('search') }}" method="get" class="search-container">
+                <div class="search-input-group">
+                    <input 
+                        type="text" 
+                        name="q"
+                        class="search-input"
+                        placeholder="분석하고 싶은 주식명을 입력하세요..."
+                        autocomplete="off"
+                        required
+                    >
+                </div>
+                <button class="search-btn" type="submit">
+                    <i class="fas fa-search"></i>
+                    <span>분석 시작</span>
+                </button>
+            </form>
+        </div>
+    </div>
+
+</div>
 {% endblock %}
